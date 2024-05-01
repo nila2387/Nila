@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DecentSampler minVersion="1.0.0">
+  <ui width="812" height="375" bgImage = "Images/backplate.png" layoutMode="relative"
+      bgMode="center">
+    <tab name="main">
+      <labeled-knob x="445" y="75" width="70" height = "70" textSize="16" textColor="AA000000"
+			trackForegroundColor="CCFFFFFF" trackBackgroundColor="66999999"
+                    label="Attack" type="float" minValue="0.0" maxValue="4.0" value="0.01" >
+        <binding type="amp" level="instrument" position="0" parameter="ENV_ATTACK" />
+      </labeled-knob>
+      <labeled-knob x="515" y="75" width="70" textSize="16" textColor="AA000000" 
+                    trackForegroundColor="CCFFFFFF" trackBackgroundColor="66999999" 
+                    label="Release" type="float" minValue="0.0" maxValue="20.0" value="1" >
+        <binding type="amp" level="instrument" position="0" parameter="ENV_RELEASE" />
+      </labeled-knob>
+      <labeled-knob x="585" y="75" width="70" textSize="16" textColor="AA000000" 
+                    trackForegroundColor="CCFFFFFF" trackBackgroundColor="66999999" 
+                    label="Chorus" type="float" minValue="0.0" maxValue="1" value="0" >
+        <binding type="effect" level="instrument" position="1" parameter="FX_MIX" />
+      </labeled-knob>
+      <labeled-knob x="655" y="75" width="70" textSize="16" textColor="FF000000"
+                    trackForegroundColor="CCFFFFFF" trackBackgroundColor="66999999"
+                    label="Tone" type="float" minValue="0" maxValue="1" value="1">
+        <binding type="effect" level="instrument" position="0" parameter="FX_FILTER_FREQUENCY"
+                 translation="table" 
+                 translationTable="0,33;0.3,150;0.4,450;0.5,1100;0.7,4100;0.9,11000;1.0001,22000"/>
+      </labeled-knob>
+      <labeled-knob x="725" y="75" width="70" textSize="16" textColor="AA000000" 
+                    trackForegroundColor="CCFFFFFF" trackBackgroundColor="66999999" 
+                    label="Reverb" type="percent" minValue="0" maxValue="100" 
+                    textColor="FF000000" value="50">
+        <binding type="effect" level="instrument" position="2" 
+                 parameter="FX_REVERB_WET_LEVEL" translation="linear" 
+                 translationOutputMin="0" translationOutputMax="1" />
+      </labeled-knob>
+    </tab>
+  </ui>
+  <groups seqMode="round_robin" attack="0.000" decay="25" sustain="1.0" release="0.430" volume="-3dB">
+    <group>
+      <sample loNote="48" hiNote="56" rootNote="55" seqPosition="1" path="Samples/1s1.wav" length="805888"/>
+      <sample loNote="48" hiNote="56" rootNote="55" seqPosition="2" path="Samples/1s2.wav" length="805888"/>
+      <sample loNote="48" hiNote="56" rootNote="55" seqPosition="1" path="Samples/1l1.wav" length="805888"/>
+      <sample loNote="48" hiNote="56" rootNote="55" seqPosition="2" path="Samples/1l2.wav" length="805888"/>
+      <sample loNote="57" hiNote="61" rootNote="58" seqPosition="1" path="Samples/2s1.wav" length="805888"/>
+      <sample loNote="57" hiNote="61" rootNote="58" seqPosition="2" path="Samples/2s2.wav" length="805888"/>
+      <sample loNote="57" hiNote="61" rootNote="58" seqPosition="1" path="Samples/2l1.wav" length="805888"/>
+      <sample loNote="57" hiNote="61" rootNote="58" seqPosition="2" path="Samples/2l2.wav" length="805888"/>
+      <sample loNote="62" hiNote="68" rootNote="64" seqPosition="1" path="Samples/3s1.wav" length="805888"/>
+      <sample loNote="62" hiNote="68" rootNote="64" seqPosition="2" path="Samples/3s2.wav" length="805888"/>
+      <sample loNote="62" hiNote="68" rootNote="64" seqPosition="1" path="Samples/3l1.wav" length="805888"/>
+      <sample loNote="62" hiNote="68" rootNote="64" seqPosition="2" path="Samples/3l2.wav" length="805888"/>
+      <sample loNote="69" hiNote="77" rootNote="72" seqPosition="1" path="Samples/4s1.wav" length="805888"/>
+      <sample loNote="69" hiNote="77" rootNote="72" seqPosition="2" path="Samples/4s2.wav" length="805888"/>
+      <sample loNote="69" hiNote="77" rootNote="72" seqPosition="1" path="Samples/4l1.wav" length="805888"/>
+      <sample loNote="69" hiNote="77" rootNote="72" seqPosition="2" path="Samples/4l2.wav" length="805888"/>
+
+    </group>
+  </groups>
+  <effects>
+    <effect type="lowpass" frequency="22000.0"/>
+    <effect type="chorus"  mix="0.0" modDepth="0.2" modRate="0.2" />
+    <effect type="reverb" wetLevel="0.5"/>
+  </effects>
+  <midi>
+    <!-- This causes MIDI CC 1 to control the 4th knob (cutoff) -->
+    <cc number="1">
+      <binding level="ui" type="control" parameter="VALUE" position="3" 
+               translation="linear" translationOutputMin="0" 
+               translationOutputMax="1" />
+    </cc>
+  </midi>
+</DecentSampler>
